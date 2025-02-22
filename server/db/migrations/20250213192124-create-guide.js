@@ -24,11 +24,14 @@ module.exports = {
       bio: {
         type: Sequelize.STRING
       },
-      contact_info: {
+      phone: {
         type: Sequelize.STRING
       },
+      social_media_links: {
+        type: Sequelize.JSON
+      },
       rating: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       languages: {
         type: Sequelize.STRING

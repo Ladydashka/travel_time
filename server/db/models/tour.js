@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
 			guide_id: DataTypes.INTEGER,
 			title: DataTypes.STRING,
 			description: DataTypes.STRING,
-			rating: DataTypes.INTEGER,
+			rating: DataTypes.FLOAT,
 			date: DataTypes.STRING,
-			duration: DataTypes.STRING,
+			duration: DataTypes.INTEGER,
 			photo_url: DataTypes.STRING,
 		},
 		{

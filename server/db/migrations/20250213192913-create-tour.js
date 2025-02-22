@@ -25,13 +25,13 @@ module.exports = {
 				type: Sequelize.STRING,
 			},
 			rating: {
-				type: Sequelize.INTEGER,
+				type: Sequelize.FLOAT,
 			},
 			date: {
 				type: Sequelize.STRING,
 			},
 			duration: {
-				type: Sequelize.STRING,
+				type: Sequelize.INTEGER,
 			},
 			photo_url: {
 				type: Sequelize.STRING,
