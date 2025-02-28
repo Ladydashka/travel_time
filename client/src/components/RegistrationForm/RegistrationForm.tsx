@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./stylesRegistrationForm.module.css";
 import Video from "../Video/Video.tsx";
+import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
+import {registerUser} from "../../redux/auth/registrationThunk.ts";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
 type Inputs = {
     name: string;
@@ -11,12 +15,26 @@ type Inputs = {
 };
 
 function RegistrationForm() {
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const isRegistered = useSelector((store: RootState) => store.registration.isRegistered);
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
-        alert("Регистрация успешна!");
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        try {
+            await dispatch(registerUser(data));
+        } catch (error) {
+            console.error("Произошла ошибка при регистрации:", error);
+        }
     };
+
+    useEffect(() => {
+        if (isRegistered) {
+            navigate("/homepage");
+        }
+    }, [isRegistered, navigate]);
+
 
     return (
         <div>
