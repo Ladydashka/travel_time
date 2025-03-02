@@ -1,21 +1,7 @@
-export type User = {
-    name: string;
-    email: string;
-    password: string;
-    role: string;
-};
-
-export type UserAndId = User & { id: number };
-
-
-
-export type StateRegistration = {
-    user: UserAndId | null;
-    isRegistered: boolean;
-};
+import {User} from "../../types/types.ts";
 
 export type StateAuth = {
     user: User | null;
-    isAuthenticated: boolean;
+    isRegistered: boolean;
 }
 

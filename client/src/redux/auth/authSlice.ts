@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {StateAuth} from "./type.ts";
-import {loginUser} from "./registrationThunk.ts"; // Импортируйте действие логаута из среза регистрации
+import {loginUser} from "./registrationThunk.ts";
 
 
 const initialState: StateAuth = {
     user: null,
-    isAuthenticated: false,
+    isRegistered: false,
 };
 
 const authSlice = createSlice({
@@ -17,11 +17,11 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state: StateAuth, action) => {
                 const { user } = action.payload;
                 state.user = user;
-                state.isAuthenticated = true;
+                state.isRegistered = true;
             })
             .addCase(loginUser.rejected, (state: StateAuth, action) => {
                 state.user = null;
-                state.isAuthenticated = false;
+                state.isRegistered = false;
             });
     },
 });
