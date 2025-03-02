@@ -1,6 +1,5 @@
-import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import styles from "./stylesLoginForm.module.css";
+import styles from "./styles.module.css";
 import Video from "../Video/Video.tsx";
 
 type Inputs = {
@@ -16,7 +15,7 @@ function LoginForm() {
         alert("Авторизация успешна!");
     };
 
-    console.log(watch("email"));
+
 
     return (
       <div>

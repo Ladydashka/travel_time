@@ -1,6 +1,8 @@
 import React, {useEffect} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import styles from "./stylesRegistrationForm.module.css";
+import styles from "./styles.module.css";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Video from "../Video/Video.tsx";
 import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
 import {registerUser} from "../../redux/auth/registrationThunk.ts";
@@ -14,12 +16,28 @@ type Inputs = {
     role: "guide" | "user";
 };
 
+const schema = yup.object().shape({
+    name: yup.string()
+        .required("Имя пользователя обязательно"),
+    email: yup.string()
+        .email("Неверный формат электронной почты")
+        .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(ru|com|org|net)$/,
+            "Электронная почта должна содержать '@' и заканчиваться доменом")
+        .required("Электронная почта обязательна"),
+    password: yup.string()
+        .min(8, "Пароль должен содержать не менее 8 символов")
+        .max(16, "Пароль не должен превышать 16 символов")
+        .matches(/[a-zA-Z]/, "Пароль должен содержать хотя бы одну букву")
+        .required("Пароль обязателен"),
+});
+
+
 function RegistrationForm() {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isRegistered = useSelector((store: RootState) => store.registration.isRegistered);
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({resolver: yupResolver(schema)});
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
@@ -45,7 +63,7 @@ function RegistrationForm() {
                         Имя:
                         <input
                             className={styles.formInput}
-                            {...register("name", { required: "Введите имя, это поле обязательно " })}
+                            {...register("name")}
                         />
                     </label>
                     {errors.name && <span className={styles.error}>{errors.name.message}</span>}
@@ -55,13 +73,7 @@ function RegistrationForm() {
                         <input
                             type="email"
                             className={styles.formInput}
-                            {...register("email", {
-                                required: "Электронная почта обязательна",
-                                pattern: {
-                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|ru|net|org|info|biz|edu)$/,
-                                    message: "Введите корректный адрес электронной почты, например: example@mail.com"
-                                }
-                            })}
+                            {...register("email")}
                         />
                     </label>
                     {errors.email && <span className={styles.error}>{errors.email.message}</span>}
@@ -71,20 +83,7 @@ function RegistrationForm() {
                         <input
                             type="password"
                             className={styles.formInput}
-                            {...register("password", {
-                                required: "Это поле обязательно",
-                                minLength: {
-                                    value: 8,
-                                    message: "Пароль должен содержать не менее 8 символов",
-                                },
-                                maxLength: {
-                                    value: 16,
-                                    message: "Пароль не может превышать 16 символов",
-                                },
-                                validate: {
-                                    hasLetter: value => /[a-zA-Z]/.test(value) || "Пароль должен содержать хотя бы одну букву",
-                                },
-                            })}
+                            {...register("password")}
                         />
                     </label>
                     {errors.password && <span className={styles.error}>{errors.password.message}</span>}
