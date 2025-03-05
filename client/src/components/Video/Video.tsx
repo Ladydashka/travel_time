@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 const VideoPlayer = () => {
     const videoUrl = 'https://vimeo.com/1061588075';
 
+
     return (
         <div className={styles.videoPlayerContainer}>
             <ReactPlayer
@@ -21,7 +22,7 @@ const VideoPlayer = () => {
 
 
             />
-            <NavBar />
+            <NavBar/>
         </div>
     );
 };

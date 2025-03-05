@@ -14,6 +14,8 @@ const backendService = {
     }): Promise<User> => {
         const response = await axios.post<User>(`${baseURL}/api/auth/sign-up`, credentials, {withCredentials: true});
         return response.data;
+
+
     },
 
     login: async (credentials: { email: string; password: string }): Promise<User> => {

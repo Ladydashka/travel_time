@@ -60,7 +60,7 @@ router.post('/sign-up', async (req, res) => {
 				})
 
 				.status(201)
-				.json(userInDb);
+				.json({...userInDb, role});
 		}
 
 	} catch (error) {
@@ -76,7 +76,6 @@ router.post('/sign-in', async (req, res) => {
 			return res.status(400).json({ message: 'Заполните все поля' });
 		}
 
-
 		const user = await User.findOne({ where: { email } });
 		const guide = await Guide.findOne({ where: { email } });
 
@@ -87,8 +86,6 @@ router.post('/sign-in', async (req, res) => {
 
 
 		const foundUser = user || guide;
-		console.log(foundUser)
-
 
 		const isPasswordValid = await bcrypt.compare(password, foundUser.password);
 		if (!isPasswordValid) {
@@ -100,6 +97,11 @@ router.post('/sign-in', async (req, res) => {
 			user: { id: foundUser.id, name: foundUser.name, email: foundUser.email }
 		});
 
+		const role = user ? 'user' : 'guide';
+		const userResponse = {
+			...foundUser.get(),
+			role,
+		};
 
 		res
 			.cookie(cookiesConfig.refresh, refreshToken, {
@@ -111,7 +113,8 @@ router.post('/sign-in', async (req, res) => {
 				httpOnly: true,
 			})
 			.status(200)
-			.json({ message: 'Успешный вход', user: foundUser });
+			.json(userResponse);
+		console.log(userResponse)
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

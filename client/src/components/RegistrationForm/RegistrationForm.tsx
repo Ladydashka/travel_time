@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {useForm, SubmitHandler} from "react-hook-form";
 import styles from "./styles.module.css";
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import Video from "../Video/Video.tsx";
 import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
 import {registerUser} from "../../redux/auth/registrationThunk.ts";
@@ -33,11 +33,11 @@ const schema = yup.object().shape({
 
 
 function RegistrationForm() {
-
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isRegistered = useSelector((store: RootState) => store.registration.isRegistered);
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({resolver: yupResolver(schema)});
+    const user = useSelector((store: RootState) => store.registration);
+    const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({resolver: yupResolver(schema)});
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
@@ -46,6 +46,7 @@ function RegistrationForm() {
             console.error("Произошла ошибка при регистрации:", error);
         }
     };
+    console.log(user)
 
     useEffect(() => {
         if (isRegistered) {

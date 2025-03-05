@@ -14,8 +14,7 @@ const registrationSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(registerUser.fulfilled, (state: StateAuth, action) => {
-                const { user } = action.payload;
-                state.user = user;
+                state.user = action.payload;
                 state.isRegistered = true;
 
             })

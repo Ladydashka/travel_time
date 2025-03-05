@@ -5,7 +5,7 @@ import {loginUser} from "../../redux/auth/registrationThunk.ts";
 import {useNavigate} from "react-router";
 import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 type Inputs = {
     email: string;
@@ -20,12 +20,12 @@ function LoginForm() {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            console.log(data)
             await dispatch(loginUser(data));
         } catch (error) {
             console.error("Произошла ошибка при регистрации:", error);
         }
     };
+
 
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function LoginForm() {
 
     return (
       <div>
-          <Video/>
+          <Video />
           <div className={styles.formContainer}>
               <form onSubmit={handleSubmit(onSubmit)}>
                   <label>
