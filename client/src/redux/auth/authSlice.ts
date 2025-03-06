@@ -3,10 +3,15 @@ import {StateAuth} from "./type.ts";
 import {loginUser} from "./registrationThunk.ts";
 
 
-const initialState: StateAuth = {
-    user: null,
-    isRegistered: false,
+const loadState = (): StateAuth => {
+    const state = localStorage.getItem('authState');
+    if (state) {
+        return JSON.parse(state);
+    }
+    return { user: null, isRegistered: false };
 };
+
+const initialState: StateAuth = loadState();
 
 const authSlice = createSlice({
     name: "auth",
@@ -17,6 +22,7 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state: StateAuth, action) => {
                 state.user = action.payload;
                 state.isRegistered = true;
+                localStorage.setItem('authState', JSON.stringify(state));
             })
             .addCase(loginUser.rejected, (state: StateAuth, action) => {
                 state.user = null;

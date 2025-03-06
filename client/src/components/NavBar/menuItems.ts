@@ -10,14 +10,14 @@ type MenuItems = {
 
 export  const menuItems: MenuItems = {
     user: [
-        {name: 'Главная', route: '/home'},
+        {name: 'Главная', route: '/homepage'},
         {name: 'Экскурсии', route: '/excursions'},
         {name: 'Личный кабинет', route: '/cabinet'},
     ],
     guide: [
-        {name: 'Главная', route: '/guide/home'},
-        {name: 'Экскурсии', route: '/guide/excursions'},
+        {name: 'Главная', route: '/homepage'},
+        {name: 'Экскурсии', route: '/excursions'},
         {name: 'Личный кабинет', route: '/cabinet'},
-        {name: 'Создать экскурсию', route: '/'},
+        {name: 'Создать экскурсию', route: '/guide'},
     ],
 }

@@ -19,7 +19,6 @@
 
 .header.authenticated::after {
     content: none;
-
 }
 
 .header::after {
@@ -30,7 +29,6 @@
     right: 0;
     height: 1px;
     background-color: white;
-
 }
 
 .logo {
@@ -42,8 +40,6 @@
 .menu {
     display: flex;
     justify-content: center;
-
-
 }
 
 .transparentButton {
@@ -56,62 +52,81 @@
     white-space: nowrap;
 }
 
-.transparentButton:hover{
+.transparentButton:hover {
     color: #FFC700;
-
 }
 
 .companyName {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
-    margin-left: 10px;
+    white-space: nowrap;
     color: white;
 }
 
-@media (max-width:850px) {
+.mobileMenu {
+    display: none;
+}
+
+.burgerButton {
+    font-size: 20px;
+    color: white;
+}
+
+.drawerMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.drawerButton {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    border: none;
+    background: none;
+    transition: color 0.3s;
+    display: block;
+}
+
+.drawerButton:hover {
+    color: #FFC700;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: flex;
+    }
+
     .companyName {
         display: none;
     }
 
-    .logo{
-        width: 100%;
+    .logo {
+        margin-left: -10px;
     }
 }
 
-@media (max-width:778px) {
-    .transparentButton {
-        font-size: 0.9em;
-    }
-
+@media (max-width: 1000px) {
     .companyName {
        display: none;
     }
 
-    .logo{
-        width: 70%;
-    }
 }
 
-@media(max-width: 500px){
-    .menu {
-        width: 100%;
-        align-items: center;
-        flex-wrap: nowrap;
-
-    }
-    .logo{
-        display: none;
+@media (max-width: 400px) {
+    .logo {
+        margin-left: -20px;
+        max-width: 80px;
     }
 
-    .transparentButton{
-        white-space: nowrap;
-        font-size: 0.7em;
-        padding: 5px 10px;
-    }
-}
-
-@media screen and (orientation: landscape) {
-    header {
-        margin-top: 15px;
+    .burgerButton {
+        margin-right: -20px;
     }
 }

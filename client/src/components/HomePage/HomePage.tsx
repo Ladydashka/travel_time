@@ -24,7 +24,6 @@ function HomePage(){
                         <h1 className={styles.title}>ПУТЕШЕСТВУЙ ВМЕСТЕ С PERO TRAVEL</h1>
                     </Space>
                 </Space>
-
                 <Space>
 
                 </Space>

@@ -55,7 +55,8 @@
         font-size: 6vw;
     }
 }
-@media (max-width: 480px) {
+
+@media (max-width: 520px) {
     .titleContainer{
         top: 20%;
     }
