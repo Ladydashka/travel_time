@@ -3,7 +3,7 @@ import {StateAuth} from "./type.ts";
 import { registerUser } from "./registrationThunk.ts";
 
 const loadState = (): StateAuth => {
-    const state = localStorage.getItem('registrationState');
+    const state = sessionStorage.getItem('registrationState');
     if (state) {
         return JSON.parse(state);
     }
@@ -21,12 +21,13 @@ const registrationSlice = createSlice({
             .addCase(registerUser.fulfilled, (state: StateAuth, action) => {
                 state.user = action.payload;
                 state.isRegistered = true;
-                localStorage.setItem('registrationState', JSON.stringify(state));
+                sessionStorage.setItem('registrationState', JSON.stringify(state));
 
             })
             .addCase(registerUser.rejected, (state: StateAuth, action) => {
                 console.error(action.payload);
 
+                sessionStorage.removeItem('registrationState');
             });
     },
 });

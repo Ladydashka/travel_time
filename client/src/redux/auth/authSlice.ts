@@ -4,7 +4,7 @@ import {loginUser} from "./registrationThunk.ts";
 
 
 const loadState = (): StateAuth => {
-    const state = localStorage.getItem('authState');
+    const state = sessionStorage.getItem('authState');
     if (state) {
         return JSON.parse(state);
     }
@@ -22,11 +22,12 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state: StateAuth, action) => {
                 state.user = action.payload;
                 state.isRegistered = true;
-                localStorage.setItem('authState', JSON.stringify(state));
+                sessionStorage.setItem('authState', JSON.stringify(state));
             })
             .addCase(loginUser.rejected, (state: StateAuth, action) => {
                 state.user = null;
                 state.isRegistered = false;
+                sessionStorage.removeItem('authState');
             });
     },
 });
