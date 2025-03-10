@@ -12,14 +12,15 @@ const { Header } = Layout;
 
 function NavBar() {
     const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
-    const user = useSelector((store: RootState) => store.auth.user);
-    const role = user ? user.role : null;
-
     const showDrawer = () => setDrawerVisible(true);
     const closeDrawer = () => setDrawerVisible(false);
 
+    const userAuth = useSelector((store: RootState) => store.auth.user);
+    const userReg= useSelector((store: RootState) => store.registration.user);
+    const role = userAuth?.role || userReg?.role || null;
+
     return (
-        <Header className={`${styles.header} ${user ? styles.authenticated : ''}`}>
+        <Header className={`${styles.header} ${role ? styles.authenticated : ''}`}>
             <Space className={styles.logo}>
                 <Image className={styles.logo} src={logo} preview={false} />
                 <span className={styles.companyName}>Pero Travel</span>

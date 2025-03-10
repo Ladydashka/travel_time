@@ -19,10 +19,13 @@ export const MENU_ITEMS = {
         route: '/account',
         element: <PersonalAccount/>,
     },
-    ADD_EXCURSION:{name: 'Добавить экскурсию', route: '/add', element: <AddExcursion/>,}
+    ADD_EXCURSION:{
+        name: 'Добавить экскурсию',
+        route: '/add',
+        element: <AddExcursion/>,}
 }
 
  export const USER_ROLE_ROUTES = {
-    ['user']: [MENU_ITEMS.HOMEPAGE,MENU_ITEMS.EXCURSIONS,MENU_ITEMS.PERSONAL],
+     ['user']: [MENU_ITEMS.HOMEPAGE,MENU_ITEMS.EXCURSIONS,MENU_ITEMS.PERSONAL],
      ['guide']: [MENU_ITEMS.HOMEPAGE,MENU_ITEMS.EXCURSIONS,MENU_ITEMS.PERSONAL, MENU_ITEMS.ADD_EXCURSION],
  }

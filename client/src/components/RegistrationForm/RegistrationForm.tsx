@@ -36,7 +36,6 @@ function RegistrationForm() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isRegistered = useSelector((store: RootState) => store.registration.isRegistered);
-    const user = useSelector((store: RootState) => store.registration);
     const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({resolver: yupResolver(schema)});
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -46,7 +45,6 @@ function RegistrationForm() {
             console.error("Произошла ошибка при регистрации:", error);
         }
     };
-    console.log(user)
 
     useEffect(() => {
         if (isRegistered) {
