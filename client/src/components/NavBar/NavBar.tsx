@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { Layout, Space, Image, Drawer, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { MenuOutlined } from '@ant-design/icons';
-import styles from './styles.module.css';
+import style from './styles.module.css';
 import logo from '../../assets/logo.svg';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store/store.tsx';
 import { USER_ROLE_ROUTES } from './menuItems.tsx';
+import getRole from "./getRole.ts";
 
 const { Header } = Layout;
 
@@ -15,21 +14,20 @@ function NavBar() {
     const showDrawer = () => setDrawerVisible(true);
     const closeDrawer = () => setDrawerVisible(false);
 
-    const userAuth = useSelector((store: RootState) => store.auth.user);
-    const userReg= useSelector((store: RootState) => store.registration.user);
-    const role = userAuth?.role || userReg?.role || null;
+
+
+    const role = getRole()
 
     return (
-        <Header className={`${styles.header} ${role ? styles.authenticated : ''}`}>
-            <Space className={styles.logo}>
-                <Image className={styles.logo} src={logo} preview={false} />
-                <span className={styles.companyName}>Pero Travel</span>
+        <Header className={`${style.header} ${role ? style.authenticated : ''}`}>
+            <Space className={style.logo}>
+                <Image  className={`${style.logo} ${role ? style.authenticated : ''}`} src={logo} preview={false} />
+                <span  className={`${style.companyName} ${role ? style.authenticated : ''}`}>Pero Travel</span>
             </Space>
 
-            <div className={styles.mobileMenu}>
+            <div className={style.mobileMenu}>
                 <Button
-                    type="text"
-                    className={styles.burgerButton}
+                    className={style.burgerButton}
                     icon={<MenuOutlined />}
                     onClick={showDrawer}
                 />
@@ -42,12 +40,12 @@ function NavBar() {
                         body: { padding: 0 },
                     }}
                 >
-                    <div className={styles.drawerMenu}>
+                    <div className={style.drawerMenu}>
                         {role ? (
                             USER_ROLE_ROUTES[role]?.map(({ name, route }) => (
                                 <Link
                                     key={route}
-                                    className={styles.drawerButton}
+                                    className={style.drawerButton}
                                     to={route}
                                     onClick={closeDrawer}
                                 >
@@ -59,7 +57,7 @@ function NavBar() {
                                 <Link
                                     key="login"
                                     to="/login"
-                                    className={styles.drawerButton}
+                                    className={style.drawerButton}
                                     onClick={closeDrawer}
                                 >
                                     Авторизация
@@ -67,7 +65,7 @@ function NavBar() {
                                 <Link
                                     key="register"
                                     to="/register"
-                                    className={styles.drawerButton}
+                                    className={style.drawerButton}
                                     onClick={closeDrawer}
                                 >
                                     Регистрация
@@ -78,12 +76,12 @@ function NavBar() {
                 </Drawer>
             </div>
 
-            <Space direction="horizontal" className={styles.menu}>
+            <Space direction="horizontal" className={style.menu}>
                 {role ? (
                     USER_ROLE_ROUTES[role]?.map(({ name, route }) => (
                         <Link
                             key={route}
-                            className={styles.transparentButton}
+                            className={`${style.transparentButton} ${role ? style.authenticated : ''}`}
                             to={route}
                         >
                             {name}
@@ -91,10 +89,10 @@ function NavBar() {
                     ))
                 ) : (
                     <>
-                        <Link key="login" to="/login" className={styles.transparentButton}>
+                        <Link key="login" to="/login" className={style.transparentButton}>
                             Авторизация
                         </Link>
-                        <Link key="register" to="/register" className={styles.transparentButton}>
+                        <Link key="register" to="/register" className={style.transparentButton}>
                             Регистрация
                         </Link>
                     </>

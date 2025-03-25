@@ -26,15 +26,11 @@ function LoginForm() {
         }
     };
 
-
-
     useEffect(() => {
         if (isRegistered) {
             navigate("/homepage");
         }
     }, [isRegistered, navigate]);
-
-
 
 
     return (

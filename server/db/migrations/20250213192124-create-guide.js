@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       bio: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       phone: {
         type: Sequelize.STRING

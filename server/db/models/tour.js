@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
 	Tour.init(
 		{
 			guide_id: DataTypes.INTEGER,
-			title: DataTypes.STRING,
-			description: DataTypes.STRING,
+			title: DataTypes.TEXT,
+			description: DataTypes.TEXT,
 			rating: DataTypes.FLOAT,
 			date: DataTypes.STRING,
 			duration: DataTypes.INTEGER,
-			photo_url: DataTypes.STRING,
+			photo_url: DataTypes.TEXT,
 		},
 		{
 			sequelize,

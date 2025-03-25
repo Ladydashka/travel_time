@@ -19,10 +19,10 @@ module.exports = {
 				},
 			},
 			title: {
-				type: Sequelize.STRING,
+				type: Sequelize.TEXT,
 			},
 			description: {
-				type: Sequelize.STRING,
+				type: Sequelize.TEXT,
 			},
 			rating: {
 				type: Sequelize.FLOAT,
@@ -34,7 +34,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			photo_url: {
-				type: Sequelize.STRING,
+				type: Sequelize.TEXT,
 			},
 			createdAt: {
 				allowNull: false,

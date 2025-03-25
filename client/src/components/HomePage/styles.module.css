@@ -1,22 +1,24 @@
 .layoutHome {
-    max-width: 1350px;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
+    background-color: white;
 }
 
 .imageContainer {
     width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
     height: 90vh;
+    overflow: hidden;
     position: relative;
 }
 
 .dynamicImage {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 .titleContainer {
@@ -24,44 +26,18 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 4vw;
+    font-size: min(4vw, 35px);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@media (max-width:1000px) {
-    .titleContainer{
-        top: 35%;
-    }
-    .title{
-        font-size: 4vw;
-    }
-}
-
-@media (max-width: 768px) {
-    .titleContainer{
-        top: 30%;
-    }
-    .title{
-        font-size: 6vw;
-    }
-}
-
-@media (max-width: 520px) {
-    .titleContainer{
-        top: 20%;
-    }
-    .title{
-        font-size: 6vw;
-    }
-
+    margin: 0;
+    white-space: nowrap;
 }

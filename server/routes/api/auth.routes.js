@@ -42,6 +42,11 @@ router.post('/sign-up', async (req, res) => {
 			}
 		}
 
+		const userResponse = {
+			...userInDb.get(),
+			role,
+		};
+
 		if (userInDb) {
 			const {accessToken, refreshToken} = generateTokens({
 				user: {id: userInDb.id, name: userInDb.name, email: userInDb.email}
@@ -60,7 +65,7 @@ router.post('/sign-up', async (req, res) => {
 				})
 
 				.status(201)
-				.json({...userInDb, role});
+				.json(userResponse)
 		}
 
 	} catch (error) {

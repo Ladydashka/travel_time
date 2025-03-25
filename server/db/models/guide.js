@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 			password: DataTypes.STRING,
 			email: DataTypes.STRING,
 			avatar_url: DataTypes.STRING,
-			bio: DataTypes.STRING,
+			bio: DataTypes.TEXT,
 			phone: DataTypes.STRING,
 			social_media_links: DataTypes.JSON,
 			rating: DataTypes.FLOAT,

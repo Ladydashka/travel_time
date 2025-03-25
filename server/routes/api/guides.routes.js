@@ -17,6 +17,7 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
 	const updatedGuide = req.body;
+	console.log(updatedGuide)
 	res.status(200).json({ guide: updatedGuide });
 });
 
