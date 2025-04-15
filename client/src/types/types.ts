@@ -12,9 +12,11 @@ export type Guide = User & {
     phone?: string;
     social_media_links?: string;
     bio?: string;
+    avatar_url?:string,
 };
 
 export type Excursion = {
+    guide_id: any;
     id: number;
     title: string;
     description: string;
@@ -23,3 +25,10 @@ export type Excursion = {
     duration: number;
     photo_url: string;
 }
+
+export type Comments = {
+    id: number;
+    rating: number;
+    name: string,
+    date: string,
+};

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {StateExcursion} from "./type.ts";
-import {getAllExcursion} from "./excursionThank.ts";
+import {getAllExcursion} from "./excursionThunk.ts";
 
 const initialState: StateExcursion = {
     excursions: [],
@@ -20,6 +20,7 @@ const getExcursionsSlice = createSlice({
             .addCase(getAllExcursion.rejected, (state: StateExcursion, action) => {
                 state.excursions = [];
                 state.isFetched = false;
+                console.error(action.payload)
             });
     }
 })

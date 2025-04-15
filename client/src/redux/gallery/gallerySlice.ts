@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {ImagesState} from "./type.ts";
-import {getImagesThank} from "./gallaryThank.ts";
+import {getImagesThank} from "./galleryThunk.ts";
 
 
 const initialState: ImagesState = {
@@ -21,6 +21,7 @@ const getImagesSlice = createSlice({
             .addCase(getImagesThank.rejected, (state: ImagesState, action) => {
                 state.images = [];
                 state.isFetched = false;
+                console.error(action.payload)
             });
     }
 })

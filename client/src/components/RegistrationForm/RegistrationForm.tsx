@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import {useForm, SubmitHandler} from "react-hook-form";
-import styles from "./styles.module.css";
+import  {useEffect} from "react";
+import {useForm, SubmitHandler, Resolver} from "react-hook-form";
+import commonStyles from "../../ commonStyles/ commonStyles.module.css";
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import Video from "../Video/Video.tsx";
@@ -29,14 +29,16 @@ const schema = yup.object().shape({
         .max(16, "Пароль не должен превышать 16 символов")
         .matches(/[a-zA-Z]/, "Пароль должен содержать хотя бы одну букву")
         .required("Пароль обязателен"),
+    role: yup.string()
+        .oneOf(["guide", "user"], "Роль должна быть либо 'guide', либо 'user'")
+        .required("Роль обязательна"),
 });
-
 
 function RegistrationForm() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isRegistered = useSelector((store: RootState) => store.registration.isRegistered);
-    const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({resolver: yupResolver(schema)});
+    const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({resolver: yupResolver(schema) as Resolver<Inputs>});
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
@@ -48,54 +50,53 @@ function RegistrationForm() {
 
     useEffect(() => {
         if (isRegistered) {
-            navigate("/homepage");
+            navigate("/login");
         }
     }, [isRegistered, navigate]);
-
 
     return (
         <div>
             <Video/>
-            <div className={styles.formContainer}>
+            <div className={commonStyles.formContainer}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label>
                         Имя:
                         <input
-                            className={styles.formInput}
+                            className={commonStyles.formInput}
                             {...register("name")}
                         />
                     </label>
-                    {errors.name && <span className={styles.error}>{errors.name.message}</span>}
+                    {errors.name && <span className={commonStyles.error}>{errors.name.message}</span>}
 
                     <label>
                         Электронная почта:
                         <input
                             type="email"
-                            className={styles.formInput}
+                            className={commonStyles.formInput}
                             {...register("email")}
                         />
                     </label>
-                    {errors.email && <span className={styles.error}>{errors.email.message}</span>}
+                    {errors.email && <span className={commonStyles.error}>{errors.email.message}</span>}
 
                     <label>
                         Пароль:
                         <input
                             type="password"
-                            className={styles.formInput}
+                            className={commonStyles.formInput}
                             {...register("password")}
                         />
                     </label>
-                    {errors.password && <span className={styles.error}>{errors.password.message}</span>}
+                    {errors.password && <span className={commonStyles.error}>{errors.password.message}</span>}
 
                     <label>
                         Роль:
-                        <select {...register("role")} className={styles.formSelect}>
+                        <select {...register("role")} className={commonStyles.formSelect}>
                             <option value="user">Пользователь</option>
                             <option value="guide">Гид</option>
                         </select>
                     </label>
 
-                    <button type="submit" className={styles.formButton}>Зарегистрироваться</button>
+                    <button type="submit" className={commonStyles.formButton}>Зарегистрироваться</button>
                 </form>
             </div>
         </div>

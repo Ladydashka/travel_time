@@ -2,9 +2,9 @@ import style from './styles.module.css'
 import {Empty, Space} from "antd";
 import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
-import { RootState, useAppDispatch } from "../../../redux/store/store.tsx";
+import { RootState, useAppDispatch } from "../../redux/store/store.tsx";
 import { useSelector } from "react-redux";
-import { getImagesThank } from "../../../redux/gallery/gallaryThank.ts";
+import { getImagesThank } from "../../redux/gallery/galleryThunk.ts";
 import {Content} from "antd/es/layout/layout";
 
 function Gallery() {

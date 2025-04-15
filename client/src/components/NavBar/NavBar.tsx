@@ -5,7 +5,8 @@ import { MenuOutlined } from '@ant-design/icons';
 import style from './styles.module.css';
 import logo from '../../assets/logo.svg';
 import { USER_ROLE_ROUTES } from './menuItems.tsx';
-import getRole from "./getRole.ts";
+import getRole from "../../selectors/getRole.ts";
+
 
 const { Header } = Layout;
 
@@ -14,11 +15,9 @@ function NavBar() {
     const showDrawer = () => setDrawerVisible(true);
     const closeDrawer = () => setDrawerVisible(false);
 
+  const role = getRole() as 'user' | 'guide';
 
-
-    const role = getRole()
-
-    return (
+  return (
         <Header className={`${style.header} ${role ? style.authenticated : ''}`}>
             <Space className={style.logo}>
                 <Image  className={`${style.logo} ${role ? style.authenticated : ''}`} src={logo} preview={false} />
@@ -36,9 +35,6 @@ function NavBar() {
                     placement="right"
                     onClose={closeDrawer}
                     open={drawerVisible}
-                    style={{
-                        body: { padding: 0 },
-                    }}
                 >
                     <div className={style.drawerMenu}>
                         {role ? (

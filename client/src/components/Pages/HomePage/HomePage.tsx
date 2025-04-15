@@ -1,12 +1,12 @@
-import NavBar from "../NavBar/NavBar.tsx";
+import NavBar from "../../NavBar/NavBar.tsx";
 import style from './styles.module.css'
 import {Content} from "antd/es/layout/layout";
 import {Layout, Space} from "antd";
 import img from '../../assets/hp_spb_1.jpg'
-import Excursions from "../Excursions/Excursions.tsx";
-import Gallery from "./Gallery/Gallery.tsx";
-import About from "./About/About.tsx";
-import Footer from "./Footer/Footer.tsx";
+import Excursions from "../../Excursions/Excursions.tsx";
+import Gallery from "../../Gallery/Gallery.tsx";
+import About from "../../About/About.tsx";
+import Footer from "../../Footer/Footer.tsx";
 
 
 function HomePage() {

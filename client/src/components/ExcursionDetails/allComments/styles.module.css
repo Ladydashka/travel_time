@@ -1,0 +1,47 @@
+.reviewsContainer {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.card{
+    max-height: 200px;
+    height: 150px;
+
+}
+
+.numberOfReviews{
+    margin-left: 2%;
+}
+
+.avatar{
+    margin-top: 3%;
+
+}
+.nameAndAvatar {
+    display: flex;
+}
+
+.review{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.reviewName {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.reviewDate {
+    font-size: 0.85em;
+    color: #999;
+    margin-left: 3%;
+}
+
+.text{
+    margin-top: 2%;
+}

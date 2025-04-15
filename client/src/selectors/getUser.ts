@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/store/store.tsx";
+import {RootState} from "../redux/store/store.tsx";
 
 export default function getUser(){
     const userAuth = useSelector((store: RootState) => store.auth.user);

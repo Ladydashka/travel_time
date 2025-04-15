@@ -34,17 +34,17 @@
 .customCard {
     margin-top: 10px;
     min-width: 250px;
-    max-width:280px;
+    max-width: 280px;
     border: 1px solid #eaeaea;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
 .customCard:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .imgExcursion {

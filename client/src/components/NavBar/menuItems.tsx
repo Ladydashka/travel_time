@@ -1,7 +1,10 @@
-import HomePage from "../HomePage/HomePage.tsx";
-import Excursions from "../Excursions/Excursions.tsx";
+import HomePage from "../Pages/HomePage/HomePage.tsx";
 import PersonalAccount from "../PersonalAccount/PersonalAccount.tsx";
 import AddExcursion from "../AddExcursion/AddExcursion.tsx";
+import ExcursionsPage from "../Pages/ExcursionsPage/ExcursionsPage.tsx";
+
+const USER_ROLE = 'user';
+const GUIDE_ROLE = 'guide';
 
 export const MENU_ITEMS = {
     HOMEPAGE:{
@@ -12,7 +15,7 @@ export const MENU_ITEMS = {
     EXCURSIONS:{
         name: 'Экскурсии',
         route: '/excursions',
-        element : <Excursions/>,
+        element : <ExcursionsPage/>,
     },
     PERSONAL:{
         name: 'Личный кабинет',
@@ -25,7 +28,7 @@ export const MENU_ITEMS = {
         element: <AddExcursion/>,}
 }
 
- export const USER_ROLE_ROUTES = {
-     ['user']: [MENU_ITEMS.HOMEPAGE,MENU_ITEMS.EXCURSIONS,MENU_ITEMS.PERSONAL],
-     ['guide']: [MENU_ITEMS.HOMEPAGE,MENU_ITEMS.EXCURSIONS,MENU_ITEMS.PERSONAL, MENU_ITEMS.ADD_EXCURSION],
- }
+export const USER_ROLE_ROUTES = {
+    [USER_ROLE]: [MENU_ITEMS.HOMEPAGE, MENU_ITEMS.EXCURSIONS, MENU_ITEMS.PERSONAL],
+    [GUIDE_ROLE]: [MENU_ITEMS.HOMEPAGE, MENU_ITEMS.EXCURSIONS, MENU_ITEMS.PERSONAL, MENU_ITEMS.ADD_EXCURSION],
+};

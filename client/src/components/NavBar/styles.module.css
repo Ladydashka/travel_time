@@ -4,8 +4,8 @@
     right: 50%;
     left: 50%;
     transform: translate(-50%, 0);
-    width:100%;
-    max-width: 1300px;
+    width: 100%;
+    max-width: 1200px;
     height: auto;
     z-index: 10;
     background: rgba(0, 21, 41, 0);
@@ -13,8 +13,8 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.03);
 }
-
 .header.authenticated {
     background: white;
 }

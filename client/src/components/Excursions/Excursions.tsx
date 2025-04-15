@@ -3,12 +3,13 @@ import style from './styles.module.css';
 import {Link} from "react-router-dom";
 import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
 import {useSelector} from "react-redux";
-import {getAllExcursion} from "../../redux/excursion/excursionThank.ts";
+import {getAllExcursion} from "../../redux/excursion/excursionThunk.ts";
 import {useEffect} from "react";
+import {Content} from "antd/es/layout/layout";
 
 function Excursions() {
     const dispatch = useAppDispatch();
-    const excursions = useSelector((store: RootState) => store.excursions.excursions);
+    const excursions = useSelector((store: RootState) => store.excursions.excursions).slice(0,8);
 
 
 
@@ -18,7 +19,7 @@ function Excursions() {
 
 
     return (
-       <>
+       <Content>
            <Space className={style.space}>
                <span  className={style.toursTitle}>Популярные экскурсии</span>
                <Link  to='/excursions'>смотреть все</Link>
@@ -45,7 +46,7 @@ function Excursions() {
                    )}
                </Layout.Content>
            </Space>
-       </>
+       </Content>
     );
 };
 

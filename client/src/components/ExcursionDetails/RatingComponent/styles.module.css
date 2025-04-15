@@ -1,0 +1,14 @@
+.titleRating{
+    text-align: left;
+    font-weight: bolder;
+}
+
+.rating{
+    display: flex;
+    align-items: center;
+
+}
+
+.paragraph{
+    margin-left: 10px;
+}

@@ -1,11 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import styles from "./styles.module.css";
+import commonStyles from "../../ commonStyles/ commonStyles.module.css";
 import Video from "../Video/Video.tsx";
 import {loginUser} from "../../redux/auth/registrationThunk.ts";
 import {useNavigate} from "react-router";
 import {RootState, useAppDispatch} from "../../redux/store/store.tsx";
 import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 type Inputs = {
     email: string;
@@ -36,29 +36,29 @@ function LoginForm() {
     return (
       <div>
           <Video />
-          <div className={styles.formContainer}>
+          <div className={commonStyles.formContainer}>
               <form onSubmit={handleSubmit(onSubmit)}>
                   <label>
                       Электронная почта:
                       <input
                           type="email"
-                          className={styles.formInput}
+                          className={commonStyles.formInput}
                           {...register("email", { required: true })}
                       />
                   </label>
-                  {errors.email && <span className={styles.error}>Это поле обязательно</span>}
+                  {errors.email && <span className={commonStyles.error}>Это поле обязательно</span>}
 
                   <label>
                       Пароль:
                       <input
                           type="password"
-                          className={styles.formInput}
+                          className={commonStyles.formInput}
                           {...register("password", { required: true })}
                       />
                   </label>
-                  {errors.password && <span className={styles.error}>Это поле обязательно</span>}
+                  {errors.password && <span className={commonStyles.error}>Это поле обязательно</span>}
 
-                  <button type="submit" className={styles.submitButton}>
+                  <button type="submit" className={commonStyles.submitButton}>
                       Войти
                   </button>
               </form>

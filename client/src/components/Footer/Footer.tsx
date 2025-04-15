@@ -8,8 +8,9 @@ import {
     WhatsAppOutlined
 } from '@ant-design/icons';
 import style from './styles.module.css';
-import {USER_ROLE_ROUTES} from "../../NavBar/menuItems.tsx";
-import getRole from "../../NavBar/getRole.ts";
+import {USER_ROLE_ROUTES} from "../NavBar/menuItems.tsx";
+import getRole from "../../selectors/getRole.ts";
+
 
 const {Footer} = Layout;
 const {Text, Link, Title} = Typography;

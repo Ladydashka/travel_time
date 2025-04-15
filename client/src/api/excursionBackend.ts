@@ -1,9 +1,10 @@
 import axios from 'axios';
+import {Excursion} from "../types/types.ts";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const excursionBackend = {
-	create: async (formData: FormData): Promise<any> => {
+	create: async (formData: FormData): Promise<Excursion> => {
 		try {
 			const response = await axios.post(`${baseURL}/api/tours`, formData, {
 				headers: {
@@ -14,10 +15,11 @@ const excursionBackend = {
 			return response.data;
 		} catch (error) {
 			console.error('Ошибка при создании экскурсии:', error);
+			throw error;
 		}
 	},
 
-	getAllExcursions: async (): Promise<any> => {
+	getAllExcursions: async (): Promise<Excursion[]> => {
 		try {
 			const response = await axios.get(`${baseURL}/api/tours`);
 			return response.data;

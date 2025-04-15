@@ -16,7 +16,12 @@ const initialState: StateAuth = loadState();
 const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {},
+    reducers: {
+        updateUser: (state, action) => {
+            state.user = { ...state.user, ...action.payload };
+            sessionStorage.setItem('authState', JSON.stringify(state));
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.fulfilled, (state: StateAuth, action) => {
@@ -27,9 +32,10 @@ const authSlice = createSlice({
             .addCase(loginUser.rejected, (state: StateAuth, action) => {
                 state.user = null;
                 state.isRegistered = false;
+                console.error(action.payload);
                 sessionStorage.removeItem('authState');
             });
     },
 });
-
+export const { updateUser } = authSlice.actions;
 export default  authSlice.reducer;

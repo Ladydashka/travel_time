@@ -1,6 +1,7 @@
-import {Guide} from "../../types/types.ts";
+import { Guide } from '../../types/types.ts';
 
 export type StateGuide = {
-    guide: Guide | null,
-    isUpdated: boolean,
-}
+    guide: Guide | null;
+    isUpdated: boolean;
+    isFetched: boolean
+};
